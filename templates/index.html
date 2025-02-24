@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Movies List</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Movies</h1>
+
+    {% if movies | length < 1 %}
+        <h3>No movies to display.</h3>
+    {% else %}
+        <table>
+            <tr>
+                <th>Content</th>
+                <th>Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for movie in movies %}
+            <tr>
+                <td>{{ movie.content }}</td>
+                <td>{{ movie.created.strftime("%Y-%m-%d") }}</td>
+                <td>
+                    <a href="/delete/{{ movie.id }}">Delete</a>
+                    <a href="/update/{{ movie.id }}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content" placeholder="Add a new movie..." />
+        <input type="submit" value="Add Movie" />
+    </form>
+</div>
+{% endblock %}

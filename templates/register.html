@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Register</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+    <form method="POST" action="{{ url_for('register') }}">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" name="username" required />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" required />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required />
+        </div>
+        <div>
+            <input type="submit" value="Register" />
+        </div>
+    </form>
+
+    {% if message %}
+        <p style="color: red;">{{ message }}</p>
+    {% endif %}
+{% endblock %}
