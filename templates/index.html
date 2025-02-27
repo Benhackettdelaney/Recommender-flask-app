@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Movies List</title>
+    <title>Movies List</title>
 {% endblock %}
 
 {% block body %}
@@ -22,15 +22,15 @@
                 <td>{{ movie.content }}</td>
                 <td>{{ movie.created.strftime("%Y-%m-%d") }}</td>
                 <td>
-                    <a href="/delete/{{ movie.id }}">Delete</a>
-                    <a href="/update/{{ movie.id }}">Edit</a>
+                    <a href="{{ url_for('movies.delete', id=movie.id) }}">Delete</a>
+                    <a href="{{ url_for('movies.update', id=movie.id) }}">Edit</a>
                 </td>
             </tr>
             {% endfor %}
         </table>
     {% endif %}
 
-    <form action="/" method="POST">
+    <form action="{{ url_for('movies.index') }}" method="POST">
         <input type="text" name="content" id="content" placeholder="Add a new movie..." />
         <input type="submit" value="Add Movie" />
     </form>
